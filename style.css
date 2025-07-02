@@ -1,0 +1,243 @@
+@layer properties {
+  :root {
+    --color-black: hsl(212, 21%, 14%);
+    --color-grey: hsl(228, 12%, 48%);
+    --color-cream: hsl(30, 38%, 92%);
+    --color-white: hsl(0, 0%, 100%);
+    --color-green-500: hsl(158, 36%, 37%);
+    --color-green-700: hsl(158, 42%, 18%);
+
+    --font-family-sans: "Montserrat", sans-serif;
+    --font-family-serif: "Fraunces", serif;
+
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.8125rem;
+    --font-size-md: 0.875rem;
+    --font-size-xl: 2rem;
+
+    --font-weight-bold: 700;
+
+    --line-height-100: 1;
+    --line-height-200: 1.1;
+    --line-height-300: 1.2;
+    --line-height-600: 1.6;
+
+    --letter-spacing-500: 0.3125rem;
+
+    --spacing-500: 2.5rem;
+    --spacing-400: 2rem;
+    --spacing-300: 1.5rem;
+    --spacing-200: 1rem;
+    --spacing-100: 0.5rem;
+    --spacing-50: 0.25rem;
+
+    --color-primary: var(--color-green-500);
+    --color-primary-hover: var(--color-green-700);
+    --color-on-primary: var(--color-white);
+    --color-text: var(--color-grey);
+
+    --border-radius-md: 0.5rem;
+  }
+}
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  img,
+  picture {
+    display: block;
+    max-width: 100%;
+  }
+
+  html,
+  body {
+    height: 100%;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utility {
+  .text-heading {
+    color: var(--color-black);
+    font-family: var(--font-family-serif);
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-100);
+  }
+
+  .text-title {
+    line-height: var(--line-height-200);
+  }
+
+  .text-body-md {
+    line-height: var(--line-height-600);
+  }
+
+  .text-label {
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-300);
+    letter-spacing: var(--letter-spacing-500);
+    text-transform: uppercase;
+  }
+
+  .text-body-sm {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-300);
+  }
+
+  .surface {
+    background-color: var(--color-white);
+  }
+}
+
+@layer global {
+  body {
+    font-size: var(--font-size-md);
+    background-color: var(--color-cream);
+    color: var(--color-text);
+  }
+}
+
+@layer layout {
+  .page-layout {
+    display: grid;
+    grid-template-columns: 0.75rem 1fr 0.75rem;
+    grid-template-rows: 1fr auto;
+    justify-items: center;
+    min-height: 100vh;
+    padding-block-start: 5rem;
+
+    > * {
+      grid-column-start: 2;
+    }
+
+    @media screen and (min-width: 720px) {
+      grid-template-columns: 1fr;
+      align-items: center;
+
+      > * {
+        grid-column-start: 1;
+      }
+    }
+  }
+}
+
+@layer utility {
+  .surface {
+    background-color: var(--color-white);
+  }
+
+  .visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+}
+
+@layer components {
+  .product-card {
+    display: grid;
+    max-width: 350px;
+
+    @media (min-width: 720px) {
+      grid-template-columns: 1fr 1fr;
+      max-width: 600px;
+    }
+
+    overflow: clip;
+    border-radius: var(--border-radius-md);
+  }
+
+  .product-card__image {
+    aspect-ratio: 1.03;
+
+    @media (min-width: 720px) {
+      aspect-ratio: initial;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .product-card__content {
+    display: grid;
+    row-gap: var(--spacing-400);
+    padding: var(--spacing-400);
+  }
+
+  .product-card__spec {
+    display: grid;
+    row-gap: var(--spacing-300);
+
+    > .product-card__category {
+      grid-row: 1;
+    }
+  }
+
+  .price {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    > .price__now {
+      font-family: var(--font-family-serif);
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary);
+    }
+
+    > .price__before {
+      position: relative;
+
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        background-color: var(--color-text);
+        width: 100%;
+        height: 0.0625rem;
+        top: 50%;
+      }
+    }
+  }
+
+  .button {
+    border: none;
+    font: inherit;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-100);
+    height: 3.125rem;
+
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    border-radius: var(--border-radius-md);
+    font-weight: var(--font-weight-bold);
+
+    > img {
+      width: 1.2em;
+      height: 1.2em;
+      object-fit: contain;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--color-primary-hover);
+    }
+  }
+}
