@@ -115,7 +115,7 @@
       grid-column-start: 2;
     }
 
-    @media screen and (min-width: 720px) {
+    @media screen and (min-width: 45rem) {
       grid-template-columns: 1fr;
       align-items: center;
 
@@ -134,11 +134,11 @@
   .visually-hidden {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
-    height: 1px;
+    height: 0.0625rem;
     overflow: hidden;
     position: absolute;
     white-space: nowrap;
-    width: 1px;
+    width: 0.0625rem;
   }
 }
 
@@ -147,7 +147,7 @@
     display: grid;
     max-width: 350px;
 
-    @media (min-width: 720px) {
+    @media (min-width: 45rem) {
       grid-template-columns: 1fr 1fr;
       max-width: 600px;
     }
@@ -159,7 +159,7 @@
   .product-card__image {
     aspect-ratio: 1.03;
 
-    @media (min-width: 720px) {
+    @media (min-width: 45rem) {
       aspect-ratio: initial;
     }
 
